@@ -3,5 +3,6 @@
     <pages>
         <page name='1-sales-by-match'/>
         <page name='2-counting-valleys'/>
+        <page name='3-jumping-on-the-clouds'/>
     </pages>
 </playground>
