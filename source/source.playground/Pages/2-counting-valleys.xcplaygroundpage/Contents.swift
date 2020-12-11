@@ -4,9 +4,9 @@ import Foundation
 let path = "DDUUDDUDUUUD"
 
 enum Tracker {
-    static private(set) var valleys: Int = 0
-    static private(set) var mountains: Int = 0
-    static private(set) var denivelation: Int = 0 {
+    private(set) static var valleys: Int = 0
+    private(set) static var mountains: Int = 0
+    private(set) static var denivelation: Int = 0 {
         didSet {
             if denivelation == 0 {
                 if oldValue < 0 {
