@@ -24,6 +24,10 @@
 
 import Foundation
 
+/**
+ source: https://github.com/thinkaboutiter/hacker-rank-challenges/issues/1
+ */
+
 /// Holding two equal elements
 struct Pair<T> where T: Equatable {
     let firstItem: T
@@ -76,4 +80,12 @@ func sockMerchant(n: Int, ar: [Int]) -> Int {
     return pairsCount
 }
 
-let result = sockMerchant(n: 9, ar: [10, 20, 20, 10, 10, 30, 50, 10, 20])
+let n = 9
+let ar = [10, 20, 20, 10, 10, 30, 50, 10, 20]
+let expected = 3
+
+let result = sockMerchant(n: n, ar: ar)
+
+print(expected == result
+        ? "SUCCESS"
+        : "FAILURE")

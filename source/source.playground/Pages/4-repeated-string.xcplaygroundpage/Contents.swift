@@ -24,6 +24,10 @@
 
 import Foundation
 
+/**
+ source: https://github.com/thinkaboutiter/hacker-rank-challenges/issues/7
+ */
+
 struct TokenCounter {
     let token: Character
     private(set) var count: Int = 0
@@ -81,4 +85,12 @@ func repeatedString(s: String, n: Int) -> Int {
     return result
 }
 
+let s = "aba"
+let n = 10
+let expected = 7
+
 let result = repeatedString(s: "aba", n: 10)
+
+print(expected == result
+        ? "SUCCESS"
+        : "FAILURE")

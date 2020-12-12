@@ -24,7 +24,9 @@
 
 import Foundation
 
-// issue
+/**
+ source: https://github.com/thinkaboutiter/hacker-rank-challenges/issues/9
+ */
 
 struct Coordinate2D {
     let row: Int
@@ -138,7 +140,7 @@ func hourglassSum(arr: [[Int]]) -> Int {
 }
 
 
-let sampleInput_1 = [
+let arr = [
     [3, 7, -3, 0, 1, 8],
     [1, -4, -7, -8, -6, 5],
     [-8, 1, 3, 3, 5, 7],
@@ -147,6 +149,10 @@ let sampleInput_1 = [
     [5, -7, 6, 5, 2, 8]
 ]
 
-let expectedMaxSum_1 = 33
+let expected = 33
 
-let actualMaxSum_1 = hourglassSum(arr: sampleInput_1)
+let result = hourglassSum(arr: arr)
+
+print(expected == result
+        ? "SUCCESS"
+        : "FAILURE")

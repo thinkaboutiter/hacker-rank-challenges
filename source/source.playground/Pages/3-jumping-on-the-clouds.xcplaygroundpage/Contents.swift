@@ -24,6 +24,9 @@
 
 import Foundation
 
+/**
+ source: https://github.com/thinkaboutiter/hacker-rank-challenges/issues/5
+ */
 
 enum Jumper {
     private(set) static var jumps: Int = 0
@@ -65,6 +68,11 @@ func jumpingOnClouds(c: [Int]) -> Int {
     return Jumper.jumps
 }
 
-let level = [0, 0, 1, 0, 0, 1, 0]
+let c = [0, 0, 1, 0, 0, 1, 0]
+let expected = 4
 
-let result = jumpingOnClouds(c: level)
+let result = jumpingOnClouds(c: c)
+
+print(expected == result
+        ? "SUCCESS"
+        : "FAILURE")

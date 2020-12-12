@@ -24,8 +24,9 @@
 
 import Foundation
 
-
-let path = "DDUUDDUDUUUD"
+/**
+ source: https://github.com/thinkaboutiter/hacker-rank-challenges/issues/3
+ */
 
 enum Tracker {
     private(set) static var valleys: Int = 0
@@ -74,4 +75,12 @@ func countingValleys(steps: Int, path: String) -> Int {
     return Tracker.valleys
 }
 
+let path = "UDDDUDUU"
+let steps = 8
+let expected = 1
+
 let result = countingValleys(steps: 8, path: path)
+
+print(expected == result
+        ? "SUCCESS"
+        : "FAILURE")
