@@ -124,5 +124,3 @@ let sampleInput_1 = [
 let expectedMaxSum_1 = 33
 
 let actualMaxSum_1 = hourglassSum(arr: sampleInput_1)
-
-//assert(expectedMaxSum_1 == actualMaxSum_1, "expected NOT EQUAL TO actual!")
