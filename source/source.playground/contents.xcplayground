@@ -7,5 +7,6 @@
         <page name='4-repeated-string'/>
         <page name='5-2d-array-ds'/>
         <page name='6-new-year-chaos'/>
+        <page name='7-arrays-left-rotation'/>
     </pages>
 </playground>
