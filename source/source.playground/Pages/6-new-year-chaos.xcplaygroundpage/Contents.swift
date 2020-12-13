@@ -28,29 +28,35 @@ import Foundation
  source: https://github.com/thinkaboutiter/hacker-rank-challenges/issues/11
  */
 
-enum BribesUtils {
-
-    static let threshold: Int = 2
-}
-
-
 func minimumBribes(q: [Int]) -> Void {
     var bribesCount = 0
-    var map = [Int: Int]()
+    var arrMutable = Array(q.reversed())
     
-    for (index, element) in q.enumerated() {
-        var elementBribes = 0
-        for number in stride(from: element - 1, through: 1, by: -1) {
-            if map[number] == nil {
-                elementBribes += 1
-                if elementBribes > BribesUtils.threshold  {
-                    print("Too chaotic")
-                    return
-                }
+    var index = 0
+    
+    while index < arrMutable.count {
+        let expected = arrMutable.count - index
+        
+        if expected != arrMutable[index] {
+            if index + 1 < arrMutable.count
+                && expected == arrMutable[index + 1]
+            {
                 bribesCount += 1
+                arrMutable.swapAt(index, index + 1)
+            }
+            else if index + 2 < arrMutable.count
+                        && expected == arrMutable[index + 2]
+            {
+                bribesCount += 2
+                arrMutable.swapAt(index + 2, index + 1)
+                arrMutable.swapAt(index + 1, index)
+            }
+            else {
+                print("Too chaotic")
+                return
             }
         }
-        map[element] = index
+        index += 1
     }
     print("\(bribesCount)")
 }
@@ -73,8 +79,8 @@ let input_4  = [1, 2, 5, 3, 7, 8, 6, 4] // 7
  [1, 2, 5, 3, 7, 8, 6, 4]
  */
 
-minimumBribes(q: input_1)
-minimumBribes(q: input_2)
+//minimumBribes(q: input_1)
+//minimumBribes(q: input_2)
 minimumBribes(q: input_3)
 minimumBribes(q: input_4)
 
