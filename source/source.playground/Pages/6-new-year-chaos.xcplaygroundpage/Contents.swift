@@ -29,89 +29,49 @@ import Foundation
  */
 
 enum BribesUtils {
-    
-    enum SubQueueStatus {
-        case noEvents
-        case lessThanOrEqualToThreshold(count: Int)
-        case moreThanThreshold
-    }
-    
-    static func statusElementsValuesInQueue(after currentElement: Int, nextElements: [Int]) -> SubQueueStatus {
-        var events = 0
-        for element in nextElements {
-            if element < currentElement {
-                events += 1
-                if events > BribesUtils.threshold {
-                    break
-                }
-            }
-        }
-        
-        let result: SubQueueStatus
-        switch events {
-        case 0:
-            result = .noEvents
-        case 1...BribesUtils.threshold:
-            result = .lessThanOrEqualToThreshold(count: events)
-        default:
-            result = .moreThanThreshold
-        }
-        return result
-    }
-    
-    static let elementsInSubQ: Int = threshold + 1
+
     static let threshold: Int = 2
 }
 
 
 func minimumBribes(q: [Int]) -> Void {
-
     var bribesCount = 0
-    var passed = Set<Int>()
+    var map = [Int: Int]()
     
     for (index, element) in q.enumerated() {
-        if element < q.count {
-            var swapCount = 0
-           
-            for previous in stride(from: element - 1, through: 1, by: -1) {
-                if !passed.contains(previous) {
-                    swapCount += 1
-                    bribesCount += 1
-                    if swapCount > BribesUtils.threshold {
-                        print("Too chaotic")
-                        return
-                    }
+        var elementBribes = 0
+        for number in stride(from: element - 1, through: 1, by: -1) {
+            if map[number] == nil {
+                elementBribes += 1
+                if elementBribes > BribesUtils.threshold  {
+                    print("Too chaotic")
+                    return
                 }
-            }
-            passed.insert(element)
-        }
-        else {
-            guard index + 1 != q.endIndex else {
-                break
-            }
-            let diff = q.endIndex - 1 - index
-            let range = (index + 1)...(index + diff)
-            let subQ = q[range]
-            let status = BribesUtils.statusElementsValuesInQueue(after: element, nextElements: Array(subQ))
-            switch status {
-            case .noEvents:
-                continue
-            case .lessThanOrEqualToThreshold(let count):
-                bribesCount += count
-            default:
-                print("Too chaotic")
-                return
+                bribesCount += 1
             }
         }
+        map[element] = index
     }
     print("\(bribesCount)")
 }
 
-let input_1 = [2, 1, 5, 3, 4]
-let input_2 = [2, 5, 1, 3, 4]
-let input_3 = [5, 1, 2, 3, 7, 8, 6, 4]
-let input_4 = [1, 2, 5, 3, 7, 8, 6, 4]
-let input_5 = [1, 2, 7, 3, 4, 5, 6, 8]
+let input_1 = [2, 1, 5, 3, 4] // 3
+let input_2 = [2, 5, 1, 3, 4] // too chaotic
+let input_3  = [5, 1, 2, 3, 7, 8, 6, 4] // too chaotic
+let input_4  = [1, 2, 5, 3, 7, 8, 6, 4] // 7
+
+/**
+ input 4 sample
+ 
+ [1, 2, 3, 4, 5, 6, 7, 8]
+ [1, 2, 3, 5, 4, 6, 7, 8]
+ [1, 2, 5, 3, 4, 6, 7, 8]
+ [1, 2, 5, 3, 6, 4, 7, 8]
+ [1, 2, 5, 3, 6, 7, 4, 8]
+ [1, 2, 5, 3, 7, 6, 4, 8]
+ [1, 2, 5, 3, 7, 6, 8, 4]
+ [1, 2, 5, 3, 7, 8, 6, 4]
+ */
 
 minimumBribes(q: input_1)
 minimumBribes(q: input_2)
